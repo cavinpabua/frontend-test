@@ -11,10 +11,13 @@ import {
 } from "@/types/survivor.type";
 import withAuth from "@/components/Shared/WithAuth";
 import { averageResourceAllocation } from "@/data/inventory";
+import { getAllItems } from "@/data/items";
+import useItemStore from "@/stores/items.store";
 
 const { Title, Text } = Typography;
 
 const Dashboard = () => {
+  const { setItems } = useItemStore((state) => state);
   const [healthy, setHealthy] = useState<HealthySurvivorsType>({
     count: 0,
     percentage: 0,
@@ -41,10 +44,17 @@ const Dashboard = () => {
     setResourceAverage(data);
   };
 
+  const getItemList = async () => {
+    // get all items
+    const res = await getAllItems();
+    setItems(res);
+  };
+
   useEffect(() => {
     getHealthy();
     getInfected();
     getResourceAverage();
+    getItemList();
   }, []);
   return (
     <>
