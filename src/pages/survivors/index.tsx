@@ -4,7 +4,11 @@ import { PlusCircleOutlined } from "@ant-design/icons";
 import { Button, Tag, Space, Typography, Table, Avatar } from "antd";
 import { ColumnsType } from "antd/lib/table";
 import { SurvivorsTableType } from "@/types/survivor.type";
-import { formatTime, getFirstLetters } from "@/data/utils";
+import {
+  capitalizeFirstLetterOfEachWord,
+  formatTime,
+  getFirstLetters,
+} from "@/data/utils";
 import { getAllSurvivors } from "@/data/survivor";
 import CreateSurvivorModal from "@/components/modals/create-survivor";
 import useSurvivorStore from "@/stores/survivor.store";
@@ -28,7 +32,7 @@ const Survivors = () => {
       render: (text) => (
         <Space>
           <Avatar>{getFirstLetters(text)}</Avatar>
-          <div>{text}</div>
+          <div>{capitalizeFirstLetterOfEachWord(text)}</div>
         </Space>
       ),
     },

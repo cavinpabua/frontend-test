@@ -28,7 +28,7 @@ interface Props {
 
 const TradeModal = (props: Props) => {
   const { user } = useUserStore((state) => state);
-  const { setItems, items } = useItemStore((state) => state);
+  const { items } = useItemStore((state) => state);
   const [offers, setOffers] = React.useState<any[]>([]);
   const [requestId, setRequestId] = React.useState<number>(0);
   const [data, setData] = React.useState<any[]>([]);
@@ -46,7 +46,7 @@ const TradeModal = (props: Props) => {
         try {
           const request = await createNewTrade(user.id, props.survivorId);
           setRequestId(request.id);
-          message.success("Trade request sent!");
+          message.success("Trade initiated successfully!");
           setIsModalVisible(true);
         } catch (err: any) {
           message.error(err.response.data.message);

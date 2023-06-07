@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Meta from "@/components/Shared/Meta";
 import { Space, Typography, Table, Avatar } from "antd";
 import { ColumnsType } from "antd/lib/table";
-import { getFirstLetters } from "@/data/utils";
+import { capitalizeFirstLetterOfEachWord, getFirstLetters } from "@/data/utils";
 import useSurvivorStore from "@/stores/survivor.store";
 import { getAllSurvivors } from "@/data/survivor";
 import Loader from "@/components/Shared/Loader";
@@ -11,7 +11,7 @@ import useItemStore from "@/stores/items.store";
 import TradeModal from "@/components/modals/trade";
 import withAuth from "@/components/Shared/WithAuth";
 import useUserStore from "@/stores/user.store";
-const { Title, Text } = Typography;
+const { Title } = Typography;
 
 const SurvivorsInventory = () => {
   const { setSurvivors, survivors, setIsReady } = useSurvivorStore(
@@ -19,7 +19,7 @@ const SurvivorsInventory = () => {
   );
   const { user } = useUserStore((state) => state);
 
-  const { setItems, items } = useItemStore((state) => state);
+  const { items } = useItemStore((state) => state);
   const [data, setData] = useState<SurvivorsTableType[]>([]);
   const [domLoaded, setDomLoaded] = useState(false);
   const columns: ColumnsType<SurvivorsTableType> = [
@@ -31,7 +31,7 @@ const SurvivorsInventory = () => {
       render: (text) => (
         <Space>
           <Avatar>{getFirstLetters(text)}</Avatar>
-          <a>{text}</a>
+          <a>{capitalizeFirstLetterOfEachWord(text)}</a>
         </Space>
       ),
     },

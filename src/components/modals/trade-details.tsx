@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import {
   Button,
-  Typography,
   Modal,
   message,
   Select,
@@ -11,22 +10,13 @@ import {
   Col,
   List,
 } from "antd";
-import { ExclamationCircleFilled } from "@ant-design/icons";
 import useUserStore from "@/stores/user.store";
 
-import {
-  acceptTrade,
-  createNewTrade,
-  rejectTrade,
-} from "@/data/trade-requests";
+import { acceptTrade, rejectTrade } from "@/data/trade-requests";
 import { getInventory } from "@/data/inventory";
 import useItemStore from "@/stores/items.store";
 import { addItemToTrade, getTradeDetails } from "@/data/trade-details";
 import { TradesTableType } from "@/types/trades.type";
-
-const { Text } = Typography;
-
-const { confirm } = Modal;
 
 interface Props {
   details: TradesTableType;
@@ -34,11 +24,10 @@ interface Props {
 
 const TradeDetailsModal = (props: Props) => {
   const { user } = useUserStore((state) => state);
-  const { setItems, items } = useItemStore((state) => state);
+  const { items } = useItemStore((state) => state);
   const [isYourOfferLocked, setIsYourOfferLocked] = React.useState(false);
   const [offers, setOffers] = React.useState<any[]>([]);
   const [partnerOffers, setPartnerOffers] = React.useState<any[]>([]);
-  const [requestId, setRequestId] = React.useState<number>(0);
   const [data, setData] = React.useState<any[]>([]);
   const [selectValue, setSelectValue] = React.useState(0);
   const [isModalVisible, setIsModalVisible] = React.useState(false);
