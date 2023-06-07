@@ -10,7 +10,7 @@ npm install
 yarn install
 ```
 
-Then, edit .env file according to server port for local development
+Then, `copy .env.example to .env`, edit `.env` file according to server port for local development
 
 ```
 NEXT_PUBLIC_LOCAL_PORT=8080 <- Local port of backend http://localhost:8080
@@ -23,6 +23,40 @@ Lastly, run the development server:
 npm run dev
 # or
 yarn dev
+```
+
+## Storybook
+
+```bash
+npm run storybook
+# or
+yarn storybook
+```
+
+## Test
+
+1. Build
+
+```bash
+npm run build
+# or
+yarn build
+```
+
+2. Run Cypress
+
+```bash
+npm run test
+# or
+yarn test
+```
+
+For Continuous Development
+
+```bash
+npm run e2e
+# or
+yarn e2e
 ```
 
 ## Deploy on Vercel
