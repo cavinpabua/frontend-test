@@ -1,0 +1,60 @@
+{
+  "name": "frontend-test",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "e2e": "start-server-and-test dev http://localhost:3000 \"cypress open --e2e\"",
+    "test": "start-server-and-test start http://localhost:3000 cypress",
+    "cypress": "cypress open",
+    "storybook": "storybook dev -p 6006 -s ../public",
+    "build-storybook": "storybook build -s public"
+  },
+  "dependencies": {
+    "@types/node": "20.2.5",
+    "@types/react": "18.2.7",
+    "@types/react-dom": "18.2.4",
+    "@types/react-highlight-words": "^0.16.4",
+    "antd": "^5.5.2",
+    "autoprefixer": "^10.4.14",
+    "axios": "^1.4.0",
+    "eslint": "8.41.0",
+    "eslint-config-next": "13.4.4",
+    "js-cookie": "^3.0.5",
+    "moment": "^2.29.4",
+    "moment-timezone": "^0.5.43",
+    "next": "13.4.4",
+    "nextjs-progressbar": "^0.0.16",
+    "postcss": "^8.4.24",
+    "react": "18.2.0",
+    "react-countup": "^6.4.2",
+    "react-dom": "18.2.0",
+    "react-highlight-words": "^0.20.0",
+    "start-server-and-test": "^2.0.0",
+    "swr": "^2.1.5",
+    "tailwindcss": "3.3.2",
+    "typescript": "5.0.4",
+    "zustand": "^4.3.8"
+  },
+  "devDependencies": {
+    "@storybook/addon-essentials": "^7.0.18",
+    "@storybook/addon-interactions": "^7.0.18",
+    "@storybook/addon-links": "^7.0.18",
+    "@storybook/addon-styling": "^1.0.8",
+    "@storybook/blocks": "^7.0.18",
+    "@storybook/nextjs": "^7.0.18",
+    "@storybook/react": "^7.0.18",
+    "@storybook/testing-library": "^0.0.14-next.2",
+    "@types/js-cookie": "^3.0.3",
+    "cypress": "^12.13.0",
+    "eslint-plugin-storybook": "^0.6.12",
+    "storybook": "^7.0.18",
+    "storybook-addon-next": "^1.8.0"
+  },
+  "resolutions": {
+    "react-countup/countup.js": "2.5.0"
+  }
+}
