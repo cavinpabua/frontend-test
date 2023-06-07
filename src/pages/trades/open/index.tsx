@@ -7,12 +7,13 @@ import { TradesTableType } from "@/types/trades.type";
 import { capitalizeFirstLetterOfEachWord, getFirstLetters } from "@/data/utils";
 import useUserStore from "@/stores/user.store";
 import TradeDetailsModal from "@/components/modals/trade-details";
+import useTradesStore from "@/stores/trades.store";
 
 const { Title, Text } = Typography;
 
 const Trades = () => {
   const { user } = useUserStore((state) => state);
-  const [data, setData] = useState<TradesTableType[]>([]);
+  const { trades, setTrades } = useTradesStore((state) => state);
   const columns: ColumnsType<TradesTableType> = [
     {
       title: "Trade ID",
@@ -76,7 +77,7 @@ const Trades = () => {
         };
       }
     );
-    setData(plotData);
+    setTrades(plotData);
   };
 
   useEffect(() => {
@@ -93,11 +94,11 @@ const Trades = () => {
       <div className="mb-8">
         <Title level={3}>List of Open Trades</Title>
         <Text type="secondary">
-          You have <span className="text-green-600">{data.length}</span> open
+          You have <span className="text-green-600">{trades.length}</span> open
           trades
         </Text>
       </div>
-      <Table columns={columns} dataSource={data} />
+      <Table columns={columns} dataSource={trades} />
     </>
   );
 };

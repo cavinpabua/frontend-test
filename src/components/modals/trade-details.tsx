@@ -17,6 +17,7 @@ import { getInventory } from "@/data/inventory";
 import useItemStore from "@/stores/items.store";
 import { addItemToTrade, getTradeDetails } from "@/data/trade-details";
 import { TradesTableType } from "@/types/trades.type";
+import useTradesStore from "@/stores/trades.store";
 
 interface Props {
   details: TradesTableType;
@@ -25,6 +26,7 @@ interface Props {
 const TradeDetailsModal = (props: Props) => {
   const { user } = useUserStore((state) => state);
   const { items } = useItemStore((state) => state);
+  const { setTrades, trades } = useTradesStore((state) => state);
   const [isYourOfferLocked, setIsYourOfferLocked] = React.useState(false);
   const [offers, setOffers] = React.useState<any[]>([]);
   const [partnerOffers, setPartnerOffers] = React.useState<any[]>([]);
@@ -100,9 +102,17 @@ const TradeDetailsModal = (props: Props) => {
 
   const lockOffer = async () => {
     try {
-      await acceptTrade(props.details.id);
+      const res = await acceptTrade(props.details.id);
       message.success("Offer locked!");
       setIsYourOfferLocked(true);
+      if (res.status === "accepted") {
+        message.success("Trade successful!");
+        // remove from trades
+        const newTrades = trades.filter(
+          (trade) => trade.id !== props.details.id
+        );
+        setTrades(newTrades);
+      }
     } catch (err: any) {
       message.error(err.response.data.message);
     }
@@ -112,6 +122,9 @@ const TradeDetailsModal = (props: Props) => {
     try {
       await rejectTrade(props.details.id);
       message.success("Offer rejected!");
+      // remove from trades
+      const newTrades = trades.filter((trade) => trade.id !== props.details.id);
+      setTrades(newTrades);
       setIsYourOfferLocked(true);
     } catch (err: any) {
       message.error(err.response.data.message);
