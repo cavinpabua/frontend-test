@@ -11,29 +11,22 @@ const meta: Meta<typeof StatCard> = {
 export default meta;
 type Story = StoryObj<typeof StatCard>;
 
-export const Simple: Story = {
+export const Rising: Story = {
   args: {
-    value: 13321,
-    statTitle: "Sample Title",
-    cardTitle: "Sample Card Title",
+    value: 14425,
+    statTitle: "Total Send",
+    subText: "Everything you've sent",
+    isRising: true,
   },
 };
 
-export const WithPrecision: Story = {
+export const Falling: Story = {
   args: {
-    value: 133231,
-    statTitle: "Sample Title With Precision",
-    cardTitle: "Sample Card Title With Precision",
+    value: 23.81,
+    statTitle: "Open Rate",
+    subText: "13,980 Opened your emails",
+    isRising: false,
     precision: 2,
-  },
-};
-
-export const WithPercent: Story = {
-  args: {
-    value: 13321,
-    statTitle: "Sample Title",
-    cardTitle: "Sample Card Title",
-    percent: 50,
-    badgeColor: "green",
+    isPercent: true,
   },
 };
